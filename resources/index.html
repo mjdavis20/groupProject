@@ -8,9 +8,31 @@
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
+    
+<header data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark custom-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Title Town Vending</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./admin.html">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
 
     <div class="container text-center">
-        <h1>Vending Machine</h1>
+        <h1>Title Town Vending</h1>
         <div class="row">
             <div class="col-4">
                 <div class="item">
@@ -26,17 +48,53 @@
                     <p>Code: A2</p>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="item">
+                    <img src="./images/cheezit.jpg" alt="Item 3">
+                    <p>Name: Cheez It</p>
+                    <p>Code: A3</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="item">
+                    <img src="./images/sourskittles.png" alt="Item 1">
+                    <p>Name: Sour Skittles</p>
+                    <p>Code: B1</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="item">
+                    <img src="./images/skittles.jpg" alt="Item 2">
+                    <p>Name: Skittles</p>
+                    <p>Code: B2</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="item">
+                    <img src="./images/reesespieces.png" alt="Item 3">
+                    <p>Name: Reese's Pieces</p>
+                    <p>Code: B3</p>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-4">
                 <div id="money-display">
                     <p>Your Balance: $0.00</p>
                 </div>
+                <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                 <!-- Add a form to select an item and input field to enter the amount to add -->
                 <form>
                     <select id="item-select" class="form-select">
+                        <option>Please select an option: </option>
                         <option value="A1">(A1)</option>
                         <option value="A2">(A2)</option>
+                        <option value="A3">(A3)</option>
+                        <option value="B1">(B1)</option>
+                        <option value="B2">(B2)</option>
+                        <option value="B3">(B3)</option>
                         <!-- Add more items as needed -->
                     </select>
                     <div class="mb-3">

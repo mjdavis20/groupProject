@@ -5,8 +5,9 @@ function addMoney() {
     if (!isNaN(moneyInput) && moneyInput > 0) {
         balance += moneyInput;
         updateBalanceDisplay();
+        hideErrorMessage();
     } else {
-        alert("Please enter a valid amount.");
+        displayErrorMessage("Please enter a valid amount.");
     }
 }
 
@@ -17,17 +18,34 @@ function purchaseItem() {
     if (balance >= itemPrice) {
         balance -= itemPrice;
         updateBalanceDisplay();
+        hideErrorMessage();
         alert(`You have successfully purchased ${selectedItem}`);
     } else {
-        alert("Insufficient funds. Please add more money.");
+        displayErrorMessage("You don't have enough money to purchase this item.");
     }
 }
+
+function displayErrorMessage(message) {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+}
+
+function hideErrorMessage() {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.style.display = "none";
+}
+
 
 function getItemPrice(itemCode) {
     // Define item prices based on their codes
     const itemPrices = {
         "A1": 1.00,
         "A2": 1.50,
+        "A3": 1.25,
+        "B1": 2.00,
+        "B2": 2.00,
+        "B3": 2.00,
         // Can add more here
     };
 
