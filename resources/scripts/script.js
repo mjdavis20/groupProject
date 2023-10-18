@@ -1,4 +1,38 @@
 let balance = 0.00;
+let isAdmin = false; 
+
+// hides the Admin link on startup so you cant click unless logged in
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("admin-link").style.display = "none";
+});
+
+function adminLogin() {
+    const username = document.getElementById("adminUsername").value;
+    const password = document.getElementById("adminPassword").value;
+
+    if (username === "admin" && password === "adminpassword") {
+        isAdmin = true;
+        localStorage.setItem("adminLoggedIn", "true");
+        alert("Admin login successful!");
+
+        // Close the modal and remove modal backdrop
+        const modal = document.getElementById("adminLoginModal");
+        modal.classList.remove("show");
+        modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+        
+        // Remove the modal backdrop
+        const modalBackdrop = document.querySelector(".modal-backdrop");
+        if (modalBackdrop) {
+            modalBackdrop.parentElement.removeChild(modalBackdrop);
+        }
+
+        // Show the Admin link after a successful admin login
+        document.getElementById("admin-link").style.display = "block";
+    } else {
+        alert("Invalid credentials. Please try again.");
+    }
+}
 
 function addMoney() {
     const moneyInput = parseFloat(document.getElementById("money-input").value);
