@@ -127,12 +127,24 @@
                         <option value="B3">(B3 $2.00)</option>
                         <!-- Add more items as needed -->
                     </select>
-                    <div class="mb-3">
-                        <input type="number" id="money-input" class="form-control" placeholder="Enter amount to add">
-                    </div>
-                    <button class="btn btn-primary" type="button" onclick="addMoney()">Add Money</button>
-                    <button class="btn btn-success" type="button" onclick="purchaseItem()">Purchase</button>
                 </form>
+                <!-- Add a form to select payment method -->
+                <form>
+                    <select id="payment-method" class="form-select">
+                        <option>Please select a payment method:</option>
+                        <option value="digital">Digital Payment</option>
+                        <option value="cash">Cash Payment</option>
+                    </select>
+                </form>
+                <!-- Add a div to display the input based on the selected method -->
+                <div id="payment-input" style="display: none;">
+                    <div class="mb-3">
+                        <input type="number" id="digital-amount" class="form-control" placeholder="Enter digital payment amount">
+                        <input type="number" id="cash-amount" class="form-control" placeholder="Enter cash payment amount" style="display: none;">
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" onclick="addMoney()">Add Money</button>
+                <button class="btn btn-success" type="button" onclick="purchaseItem()">Purchase</button>
             </div>
         </div>
     </div>
