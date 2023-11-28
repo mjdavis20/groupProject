@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const itemInventory = getItemInventory(); 
 
+    // change to fit updated design doc
     // Populate the table with item inventory data
     const tableBody = document.querySelector("tbody");
     itemInventory.forEach(item => {
@@ -40,6 +41,7 @@ function removeFromInventory(itemCode) {
 }
 
 function getItemInventory() {
+    // change to get from api
     const itemInventoryStr = localStorage.getItem('itemInventory');
     return itemInventoryStr ? JSON.parse(itemInventoryStr) : getDefaultItemInventory();
 }
@@ -49,6 +51,7 @@ function updateItemInventory(itemInventory) {
     localStorage.setItem('itemInventory', JSON.stringify(itemInventory));
 }
 
+// remove
 function getDefaultItemInventory() {
     // Define the default item inventory
     return [

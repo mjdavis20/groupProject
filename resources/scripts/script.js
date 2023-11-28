@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("admin-link").style.display = "none";
 });
 
+// change so that it can use admin login from database
 function adminLogin() {
     const username = document.getElementById("adminUsername").value;
     const password = document.getElementById("adminPassword").value;
@@ -34,6 +35,7 @@ function adminLogin() {
     }
 }
 
+// change how to add money completely
 function addMoney() {
     const moneyInput = parseFloat(document.getElementById("money-input").value);
     if (!isNaN(moneyInput) && moneyInput > 0) {
@@ -45,6 +47,7 @@ function addMoney() {
     }
 }
 
+// add it so that it removes from inventory in admin page and database
 function purchaseItem() {
     const selectedItem = document.getElementById("item-select").value;
     const itemPrice = getItemPrice(selectedItem);
@@ -70,7 +73,7 @@ function hideErrorMessage() {
     errorMessage.style.display = "none";
 }
 
-
+// change so that they get pulled from database
 function getItemPrice(itemCode) {
     // Define item prices based on their codes
     const itemPrices = {

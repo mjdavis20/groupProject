@@ -14,3 +14,4 @@ Make everything more visually appealing
 
 Add a login system for administrators to see the admin page
 
+Difference between digital payment versus cash
