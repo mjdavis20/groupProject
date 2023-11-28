@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "EtW8p0OVy69kw9oG1SfWefsh6MDk45TpGjWzyRzTA1K2mT4UBY+Y0E2cGz39VdODXj8CdsquNfLbQXAqbrfSkQ==",
+  "success": true,
+  "projectFilePath": "/Users/ryancarlson/Desktop/MIS321/groupProject/api/api.csproj",
+  "expectedPackageFiles": [
+    "/Users/ryancarlson/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/ryancarlson/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/ryancarlson/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/ryancarlson/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/ryancarlson/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/ryancarlson/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
