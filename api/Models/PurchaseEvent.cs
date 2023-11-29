@@ -2,9 +2,10 @@ namespace api.Models
 {
     public class PurchaseEvent
     {
+        public int PurchaseID {get; set;}
         public string Date {get; set;}
         public string Time {get; set;}
-        public string ProductName {get; set;}
-        public string ProductCost {get; set;}
+        public int ProductID {get; set;}
+     
     }
 }
