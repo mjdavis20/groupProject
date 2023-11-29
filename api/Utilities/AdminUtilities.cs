@@ -3,6 +3,7 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Runtime.InteropServices;
+using api.Controllers;
 
 namespace api.Utilities
 {

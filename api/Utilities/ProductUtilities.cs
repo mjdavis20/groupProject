@@ -3,12 +3,13 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Runtime.InteropServices;
+using api.Controllers;
 
 namespace api.Utilities
 {
-    public class ProductUtilites 
+    public class ProductUtilities 
     {
-        public List<Product> GetAllProducts(bool Deleted)
+        public List<Product> GetAllProducts()
         {
             ConnectionString myConnection = new ConnectionString();
             string cs  = myConnection.cs;
@@ -16,7 +17,6 @@ namespace api.Utilities
             con.Open();
             string stm = "SELECT * FROM Products WHERE Deleted = 0 ORDER BY ProductID ASC";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@Deleted", Deleted);
             cmd.Prepare();
             using MySqlDataReader rdr = cmd.ExecuteReader();
             List<Product> Allproducts = new List<Product>();
@@ -90,8 +90,22 @@ namespace api.Utilities
             cmd.ExecuteNonQuery();
         }
 
-
-
-
+        public void UpdateProduct(Product value)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs  = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+            string stm = @"UPDATE Products SET Quantity = @Quantity, Cost = @Cost WHERE ProductID = @ID";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
+            
+            cmd.Parameters.AddWithValue("@ID", value.ProductID);
+            cmd.Parameters.AddWithValue("@Quantity", value.Quantity);
+            cmd.Parameters.AddWithValue("@Cost", value.Cost);
+            
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }

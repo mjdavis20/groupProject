@@ -8,7 +8,7 @@ namespace api.Utilities
 {
     public class VendingMachineUtilities
     {
-        public List<VendingMachine> GetAllVendingMachines(bool Deleted)
+        public List<VendingMachine> GetAllVendingMachines()
         {
             ConnectionString myConnection = new ConnectionString();
             string cs  = myConnection.cs;
@@ -16,7 +16,6 @@ namespace api.Utilities
             con.Open();
             string stm = "SELECT * FROM Vending Machines WHERE Deleted = 0 ORDER BY VendID ASC";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@Deleted", Deleted);
             cmd.Prepare();
             using MySqlDataReader rdr = cmd.ExecuteReader();
             List<VendingMachine> AllVendingMachines = new List<VendingMachine>();
@@ -28,7 +27,7 @@ namespace api.Utilities
             return AllVendingMachines;
         }
 
-        public void NewVendingMachines(VendingMachine myVendingMachine)
+        public void NewVendingMachine(VendingMachine myVendingMachine)
         {
             ConnectionString myConnection = new ConnectionString();
             string cs  = myConnection.cs;

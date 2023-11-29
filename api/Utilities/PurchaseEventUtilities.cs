@@ -25,5 +25,25 @@ namespace api.Utilities
             con.Close();
             return Allpurchaseevents;
         }
+
+        public void NewPurchaseEvent(PurchaseEvent myPurchaseEvent)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs  = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+            Console.WriteLine("New Purchase Event");
+
+            string stm = @"INSERT INTO Purchase Events (Date, Time) VALUES(@Date, @Time)";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.Parameters.AddWithValue("@Date", myPurchaseEvent.Date);
+            cmd.Parameters.AddWithValue("@Time", myPurchaseEvent.Time);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+        }
     }
 }
