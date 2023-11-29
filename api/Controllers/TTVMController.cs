@@ -16,38 +16,12 @@ namespace api.Controllers
     public class TTVMController : ControllerBase
     {
 
-
-             // GET: api/Exercise
-        // [HttpGet]
-        // public List<Exercise> Get()
-        // {
-        //     IGetAllExercises readObject = new GetExercise();
-        //     Console.WriteLine("Get All");
-        //     return readObject.GetAllExercises();
-        // }
-
-        // // GET: api/Exercise/5
-        // [EnableCors("OpenPolicy")]
-        // [HttpGet("{id}", Name = "GetExercise")]
-        // public Exercise Get(int id)
-        // {
-        //     IGetExercise readObject = new GetExercise();
-        //     return readObject.GetExercise(id);
-           
-        // }
-
         // GET: api/TTVM
         [HttpGet]
-        // public List<Admin> Get()
-        // {
-        //     GetAllAdmins readOject = new GetAllAdmins();
-        //     return readOject.GetAllAdmin();
-        // }
 
         public List<Product> Get()
         {
-            Product readObject = new GetAllProducts();
-            return readObject.GetAllProducts();
+     
         }
 
         // GET: api/TTVM/5
@@ -55,17 +29,16 @@ namespace api.Controllers
         [HttpGet("{ProductID}", Name = "GetProductById")]
         public Product Get(int ProductID)
         {
-            GetProductById readObject = new GetProductById();
-            return readObject.GetProductById(ProductID);
+        
         }
 
-        [EnableCors("OpenPolicy")]
-        [HttpGet("{Sold}", Name = "GetSoldProducts")]
-        public Product Get(bool Sold)
-        {
-            GetSoldProducts readObject = new GetSoldProducts();
-            return readObject.GetSoldProducts(Sold);
-        }
+        // [EnableCors("OpenPolicy")]
+        // [HttpGet("{Sold}", Name = "GetSoldProducts")]
+        // public Product Get(bool Sold)
+        // {
+        //     GetSoldProducts readObject = new GetSoldProducts();
+        //     return readObject.GetSoldProducts(Sold);
+        // }
 
 
         // POST: api/TTVM

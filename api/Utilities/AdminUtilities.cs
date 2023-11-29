@@ -23,5 +23,26 @@ namespace api.Utilities
             con.Close();
             return Alladmins;
         }
+
+        public void CreateAdmin(Admin myAdmin)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs  = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+            Console.WriteLine("New Admin");
+
+            string stm = @"INSERT INTO Admins(Email, Password) VALUES(@Email, @Password)";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.Parameters.AddWithValue("@Email", myAdmin.Email);
+            cmd.Parameters.AddWithValue("@Password", myAdmin.Password);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+            // throw new NotImplementedException();
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace api.Utilities
             return Allproducts;
         }
 
+//Not sure how to get this table to display in Controller if used
         public List<Product> GetSoldProducts(bool Sold)
         {
             ConnectionString myConnection = new ConnectionString();
@@ -61,6 +62,32 @@ namespace api.Utilities
             con.Close();
             return Allproducts;
         }
+
+        public void CreateProduct(Product myProduct)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs  = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+            Console.WriteLine("New Product");
+
+            string stm = @"INSERT INTO Products(Quantity, Cost, Name, Sold, Deleted, VendID) VALUES(@Quantity, @Cost, @Name, @Sold, @Deleted, @VendID)";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.Parameters.AddWithValue("@Quantity", myProduct.Quantity);
+            cmd.Parameters.AddWithValue("@Cost", myProduct.Cost);
+            cmd.Parameters.AddWithValue("@Name", myProduct.Name);
+            cmd.Parameters.AddWithValue("@Sold", myProduct.Sold);
+            cmd.Parameters.AddWithValue("@Deleted", myProduct.Deleted);
+            cmd.Parameters.AddWithValue("@VendID", myProduct.VendID);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+        }
+
+
 
 
     }
