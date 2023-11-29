@@ -21,7 +21,8 @@ namespace api.Controllers
 
         public List<Product> Get()
         {
-     
+            ProductUtilities utility = new ProductUtilities();
+            return utility.GetAllExercises();
         }
 
         // GET: api/TTVM/5

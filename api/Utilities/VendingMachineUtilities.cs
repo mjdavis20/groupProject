@@ -1,5 +1,8 @@
 using api.Models;
+using System.Data;
+using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Runtime.InteropServices;
 
 namespace api.Utilities
 {
@@ -16,13 +19,13 @@ namespace api.Utilities
             cmd.Parameters.AddWithValue("@Deleted", Deleted);
             cmd.Prepare();
             using MySqlDataReader rdr = cmd.ExecuteReader();
-            List<VendingMachine> Allvendingmachines = new List<VendingMachine>();
+            List<VendingMachine> AllVendingMachines = new List<VendingMachine>();
             while(rdr.Read())
             {
-                Allvendingmachines.Add(new VendingMachine(){VendID = rdr.GetInt32(0), Address = rdr.GetString(1), ZipCode = rdr.GetInt32(0)});
+                AllVendingMachines.Add(new VendingMachine(){VendID = rdr.GetInt32(0), Address = rdr.GetString(1), ZipCode = rdr.GetInt32(0)});
             }
             con.Close();
-            return VendingMachine;
+            return AllVendingMachines;
         }
 
         public void NewVendingMachines(VendingMachine myVendingMachine)
