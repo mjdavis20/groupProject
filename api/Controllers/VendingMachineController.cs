@@ -26,10 +26,11 @@ namespace api.Controllers
 
         // GET: api/TTVM/5
         [HttpGet("{id}", Name = "GetVendingMachine")]
-        public VendingMachine Get(int id)
+        public VendingMachine Get(int id,[FromBody] VendingMachine value)
         {
             VendingMachineUtilities utility = new VendingMachineUtilities();
-            List<VendingMachine> myVendingMachines = utility.GetAllVendingMachines();
+            List<VendingMachine> myVendingMachines = utility.GetAllVendingMachines(value);
+
             foreach(VendingMachine vendingMachine in myVendingMachines)
             {
                 if(vendingMachine.VendID == id)
@@ -50,14 +51,18 @@ namespace api.Controllers
 
         // PUT: api/TTVM/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Product value)
+        public void Put(int id, [FromBody] VendingMachine value)
         {
+            VendingMachineUtilities utility = new VendingMachineUtilities();
+            utility.UpdateVendingMachine(value);
         }
 
         // DELETE: api/TTVM/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(VendingMachine value)
         {
+            VendingMachineUtilities utility = new VendingMachineUtilities();
+            utility.DeleteVendingMachine(value);
         }
     }
 

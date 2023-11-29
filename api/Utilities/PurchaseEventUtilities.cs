@@ -45,5 +45,40 @@ namespace api.Utilities
 
             cmd.ExecuteNonQuery();
         }
+
+        public void UpdatePurchaseEvent(PurchaseEvent value)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs  = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+            string stm = @"UPDATE Purchase Events SET Date = @Date, Time = @Time, ProductID = @ProductID WHERE PurchaseID = @ID";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
+            
+            cmd.Parameters.AddWithValue("@Date", value.Date);
+            cmd.Parameters.AddWithValue("@Time", value.Time);
+            cmd.Parameters.AddWithValue("@ProductID", value.ProductID);
+            cmd.Parameters.AddWithValue("@ID", value.PurchaseID);
+            
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void DeletePurchaseEvent(PurchaseEvent value)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"UPDATE Purchase Events SET Deleted = 1 WHERE PurchaseID = @id";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@id", value.PurchaseID);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+        }
+
     }
 }

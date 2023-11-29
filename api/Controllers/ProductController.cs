@@ -26,7 +26,7 @@ namespace api.Controllers
 
         // GET: api/TTVM/5
         [HttpGet("{id}", Name = "GetProduct")]
-        public Product Get(int id)
+        public Product Get(int id, [FromBody] Product myProduct)
         {
             ProductUtilities utility = new ProductUtilities();
             List<Product> myProducts = utility.GetAllProducts();
@@ -58,8 +58,10 @@ namespace api.Controllers
 
         // DELETE: api/TTVM/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Product value)
         {
+            ProductUtilities utility = new ProductUtilities();
+            utility.DeleteProduct(value);
         }
     }
 

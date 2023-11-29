@@ -50,14 +50,18 @@ namespace api.Controllers
 
         // PUT: api/TTVM/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Product value)
+        public void Put(int id, [FromBody] PurchaseEvent value)
         {
+            PurchaseEventUtilities utility = new PurchaseEventUtilities();
+            utility.UpdatePurchaseEvent(value);
         }
 
         // DELETE: api/TTVM/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(PurchaseEvent value)
         {
+            PurchaseEventUtilities utility = new PurchaseEventUtilities();
+            utility.DeletePurchaseEvent(value);
         }
     }
 
