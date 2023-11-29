@@ -107,5 +107,22 @@ namespace api.Utilities
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public void DeleteProduct(Admin value)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"UPDATE Products SET Deleted = 1 WHERE ProductID = @id";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@id", value.AdminID);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+        }
+
+
     }
 }

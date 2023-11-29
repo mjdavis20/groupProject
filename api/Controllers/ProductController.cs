@@ -10,7 +10,7 @@ using api.Utilities;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]", Name = "ProductRoute")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace api.Controllers
         }
 
         // GET: api/TTVM/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetProduct")]
         public Product Get(int id)
         {
             ProductUtilities utility = new ProductUtilities();

@@ -47,5 +47,43 @@ namespace api.Utilities
             cmd.ExecuteNonQuery();
             // throw new NotImplementedException();
         }
+
+        public void UpdateAdmin(Admin value)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = "UPDATE Admins";
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.CommandText = @"UPDATE Admins SET Email = @Email, Password = @Password Where AdminID = @AdminID";
+
+            cmd.Parameters.AddWithValue("@AdminID", value.AdminID);
+            cmd.Parameters.AddWithValue("@Email", value.Email);
+            cmd.Parameters.AddWithValue("@Password", value.Password);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+        }
+
+
+       
+        public void DeleteAdmin(Admin value)
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"UPDATE Admins SET Deleted = 1 WHERE Admins = @id";
+
+            using var cmd = new MySqlCommand(stm, con);
+            cmd.Parameters.AddWithValue("@id", value.AdminID);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+        }
+    
     }
 }

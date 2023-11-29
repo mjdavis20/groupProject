@@ -10,7 +10,7 @@ using api.Utilities;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]", Name = "AdminRoute")]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace api.Controllers
         }
 
         // GET: api/TTVM/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetAdmin")]
         public Admin Get(int id)
         {
             AdminUtilities utility = new AdminUtilities();
@@ -50,14 +50,18 @@ namespace api.Controllers
 
         // PUT: api/TTVM/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Product value)
+        public void Put([FromBody] Admin value)
         {
+            AdminUtilities utility = new AdminUtilities();
+            utility.UpdateAdmin(value);
         }
 
         // DELETE: api/TTVM/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Admin value)
         {
+            AdminUtilities utility = new AdminUtilities();
+            utility.DeleteAdmin(value);
         }
     }
 

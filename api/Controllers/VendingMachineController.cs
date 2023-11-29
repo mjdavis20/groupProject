@@ -10,7 +10,7 @@ using api.Utilities;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]", Name = "VendingMachineRoute")]
     [ApiController]
     public class VendingMachineController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace api.Controllers
         }
 
         // GET: api/TTVM/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetVendingMachine")]
         public VendingMachine Get(int id)
         {
             VendingMachineUtilities utility = new VendingMachineUtilities();

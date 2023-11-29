@@ -10,7 +10,7 @@ using api.Utilities;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]", Name = "PurchaseEventRoute")]
     [ApiController]
     public class PurchaseEventController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace api.Controllers
         }
 
         // GET: api/TTVM/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetPurchaseEvent")]
         public PurchaseEvent Get(int id)
         {
             PurchaseEventUtilities utility = new PurchaseEventUtilities();
