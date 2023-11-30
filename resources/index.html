@@ -61,93 +61,28 @@
     </div>
 </div>
 
-    <div class="container text-center">
-        <h1>Title Town Vending</h1>
-        <div class="row">
-            <div class="col-4">
-                <div class="item">
-                    <img src="./images/doritos.jpg" alt="Item 1">
-                    <p>Name: Doritos</p>
-                    <p>Code: A1</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="item">
-                    <img src="./images/pretzel.jpg" alt="Item 2">
-                    <p>Name: Pretzels</p>
-                    <p>Code: A2</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="item">
-                    <img src="./images/cheezit.jpg" alt="Item 3">
-                    <p>Name: Cheez It</p>
-                    <p>Code: A3</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <div class="item">
-                    <img src="./images/sourskittles.png" alt="Item 1">
-                    <p>Name: Sour Skittles</p>
-                    <p>Code: B1</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="item">
-                    <img src="./images/skittles.jpg" alt="Item 2">
-                    <p>Name: Skittles</p>
-                    <p>Code: B2</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="item">
-                    <img src="./images/reesespieces.png" alt="Item 3">
-                    <p>Name: Reese's Pieces</p>
-                    <p>Code: B3</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <div id="money-display">
-                    <p>Your Balance: $0.00</p>
-                </div>
-                <div id="error-message" class="alert alert-danger" style="display: none;"></div>
-                <!-- Add a form to select an item and input field to enter the amount to add -->
-                <form>
-                    <select id="item-select" class="form-select">
-                        <option>Please select an option: </option>
-                        <option value="A1">(A1 $1.00)</option>
-                        <option value="A2">(A2 $1.50)</option>
-                        <option value="A3">(A3 $1.25)</option>
-                        <option value="B1">(B1 $2.00)</option>
-                        <option value="B2">(B2 $2.00)</option>
-                        <option value="B3">(B3 $2.00)</option>
-                        <!-- Add more items as needed -->
-                    </select>
-                </form>
+<div class="row" id="product-container">
+    <!-- Product items with Buy buttons will be dynamically added here -->
+</div>
                 <!-- Add a form to select payment method -->
-                <form>
-                    <select id="payment-method" class="form-select">
-                        <option>Please select a payment method:</option>
-                        <option value="digital">Digital Payment</option>
-                        <option value="cash">Cash Payment</option>
-                    </select>
-                </form>
-                <!-- Add a div to display the input based on the selected method -->
-                <div id="payment-input" style="display: none;">
-                    <div class="mb-3">
-                        <input type="number" id="digital-amount" class="form-control" placeholder="Enter digital payment amount">
-                        <input type="number" id="cash-amount" class="form-control" placeholder="Enter cash payment amount" style="display: none;">
-                    </div>
-                </div>
-                <button class="btn btn-primary" type="button" onclick="addMoney()">Add Money</button>
-                <button class="btn btn-success" type="button" onclick="purchaseItem()">Purchase</button>
-            </div>
-        </div>
+<form>
+    <select id="payment-method" class="form-select">
+        <option>Please select a payment method:</option>
+        <option value="digital">Digital Payment</option>
+        <option value="cash">Cash Payment</option>
+    </select>
+</form>
+<!-- Add a div to display the input based on the selected method -->
+<div id="payment-input" style="display: none;">
+    <div class="mb-3">
+        <input type="number" id="digital-amount" class="form-control" placeholder="Enter digital payment amount">
+        <input type="number" id="cash-amount" class="form-control" placeholder="Enter cash payment amount" style="display: none;">
     </div>
+</div>
+    <button class="btn btn-primary" type="button" onclick="addMoney()">Add Money</button>
+    <button class="btn btn-success" type="button" onclick="purchaseItem()">Purchase</button>
+</div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

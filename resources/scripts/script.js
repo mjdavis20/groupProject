@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // change so that it can use admin login from database
 function adminLogin() {
+    
     const username = document.getElementById("adminUsername").value;
     const password = document.getElementById("adminPassword").value;
 
@@ -35,7 +36,53 @@ function adminLogin() {
     }
 }
 
-// change how to add money completely
+
+// Function to fetch products from the API and dynamically generate HTML elements
+async function fetchProducts() {
+    try {
+        const response = await fetch('/api/ProductRoute');
+        const products = await response.json();
+
+        // Reference the product container
+        const productContainer = document.getElementById("product-container");
+
+        // Loop through each product and create HTML elements
+        products.forEach(product => {
+            const colDiv = document.createElement("div");
+            colDiv.classList.add("col-4");
+
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("item");
+
+            // Assuming the product object has properties like Name, Code, and ImageURL
+            itemDiv.innerHTML = `
+                <img src="${product.ImageURL}" alt="${product.Name}">
+                <p>Name: ${product.Name}</p>
+                <button class="btn btn-primary" onclick="purchaseItem('${product.Code}', ${product.Cost})">Buy</button>
+            `;
+
+            colDiv.appendChild(itemDiv);
+            productContainer.appendChild(colDiv);
+        });
+
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
+}
+
+// Function to fetch product details by ID from the API
+async function fetchProductDetails(productId) {
+    try {
+        const response = await fetch(`/api/ProductRoute/${productId}`);
+        const product = await response.json();
+        // Handle the product details, update the UI, etc.
+        console.log('Product Details:', product);
+    } catch (error) {
+        console.error('Error fetching product details:', error);
+    }
+}
+
+// Function to add money to the balance
 function addMoney() {
     const moneyInput = parseFloat(document.getElementById("money-input").value);
     if (!isNaN(moneyInput) && moneyInput > 0) {
@@ -47,18 +94,55 @@ function addMoney() {
     }
 }
 
-// add it so that it removes from inventory in admin page and database
-function purchaseItem() {
+// Function to purchase an item
+async function purchaseItem() {
     const selectedItem = document.getElementById("item-select").value;
-    const itemPrice = getItemPrice(selectedItem);
 
-    if (balance >= itemPrice) {
-        balance -= itemPrice;
-        updateBalanceDisplay();
-        hideErrorMessage();
-        alert(`You have successfully purchased ${selectedItem}`);
-    } else {
-        displayErrorMessage("You don't have enough money to purchase this item.");
+    try {
+        // Fetch product details
+        const response = await fetch(`/api/ProductRoute/${selectedItem}`);
+        const product = await response.json();
+
+        if (balance >= product.Cost) {
+            // Deduct the cost from the balance
+            balance -= product.Cost;
+
+            // Update the UI
+            updateBalanceDisplay();
+            hideErrorMessage();
+
+            // Display a success message
+            alert(`You have successfully purchased ${product.Name}`);
+            
+            //Send a request to the backend to mark the product as sold or update inventory
+            await markProductAsSold(product.ProductID);
+        } else {
+            // Display an error message if the balance is insufficient
+            displayErrorMessage("You don't have enough money to purchase this item.");
+        }
+    } catch (error) {
+        console.error('Error purchasing item:', error);
+        // Handle errors
+    }
+}
+
+// Function to mark a product as sold (need to implement this on the admin page)
+async function markProductAsSold(productId) {
+    try {
+        const response = await fetch(`/api/ProductRoute/${productId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Sold: true }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to mark product as sold. Status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error marking product as sold:', error);
+        // Handle errors, display an error message, etc.
     }
 }
 
@@ -74,21 +158,21 @@ function hideErrorMessage() {
 }
 
 // change so that they get pulled from database
-function getItemPrice(itemCode) {
-    // Define item prices based on their codes
-    const itemPrices = {
-        "A1": 1.00,
-        "A2": 1.50,
-        "A3": 1.25,
-        "B1": 2.00,
-        "B2": 2.00,
-        "B3": 2.00,
-        // Can add more here
-    };
+// function getItemPrice(itemCode) {
+//     // Define item prices based on their codes
+//     const itemPrices = {
+//         "A1": 1.00,
+//         "A2": 1.50,
+//         "A3": 1.25,
+//         "B1": 2.00,
+//         "B2": 2.00,
+//         "B3": 2.00,
+//         // Can add more here
+//     };
 
-    // Return the price for the given item code, or 0 if the item code is not found
-    return itemPrices[itemCode] || 0.00;
-}
+//     // Return the price for the given item code, or 0 if the item code is not found
+//     return itemPrices[itemCode] || 0.00;
+// }
 
 function updateBalanceDisplay() {
     const moneyDisplay = document.getElementById("money-display");
