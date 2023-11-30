@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using api.Models;
 using api.Utilities;
+using Microsoft.AspNetCore.Cors;
 
 
 namespace api.Controllers
@@ -17,7 +18,6 @@ namespace api.Controllers
 
         // GET: api/TTVM
         [HttpGet]
-
         public List<Product> Get()
         {
             ProductUtilities utility = new ProductUtilities();
@@ -26,19 +26,19 @@ namespace api.Controllers
 
         // GET: api/TTVM/5
         [HttpGet("{id}", Name = "GetProduct")]
-        public Product Get(int id, [FromBody] Product myProduct)
+        public Product Get(int id)
         {
-            ProductUtilities utility = new ProductUtilities();
-            List<Product> myProducts = utility.GetAllProducts();
-            foreach(Product product in myProducts)
+        ProductUtilities utility = new ProductUtilities();
+        List<Product> myProducts = utility.GetAllProducts();
+            foreach (Product product in myProducts)
             {
-                if(product.ProductID == id)
+             if (product.ProductID == id)
                 {
                     return product;
                 }
             }
-            return new Product();
-        }
+        return new Product();
+}
 
         // POST: api/TTVM
         [HttpPost]

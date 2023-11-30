@@ -5,7 +5,6 @@ namespace api.Models
         public int VendID {get; set;}
         public string Address {get; set;}
         public int ZipCode {get; set;}
-
         public bool Deleted{get; set;}
     }
 }

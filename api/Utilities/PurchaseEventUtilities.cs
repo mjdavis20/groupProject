@@ -14,13 +14,13 @@ namespace api.Utilities
             string cs  = myConnection.cs;
             using var con = new MySqlConnection(cs);
             con.Open();
-            string stm = "SELECT * FROM Purchase Events ORDER BY PurchaseID ASC";
+            string stm = "SELECT * FROM PurchaseEvents ORDER BY PurchaseID ASC";
             using var cmd = new MySqlCommand(stm, con);
             MySqlDataReader rdr = cmd.ExecuteReader();
             List<PurchaseEvent> Allpurchaseevents = new List<PurchaseEvent>();
             while(rdr.Read())
             {
-                Allpurchaseevents.Add(new PurchaseEvent(){PurchaseID = rdr.GetInt32(0), Date = rdr.GetString(1), Time = rdr.GetString(2), ProductID = rdr.GetInt32(3)});
+                Allpurchaseevents.Add(new PurchaseEvent(){PurchaseID = rdr.GetInt32(0), Date = rdr.GetString(1), Time = rdr.GetString(2), ProductID = rdr.GetInt32(3), Deleted = rdr.GetBoolean(4)});
             }
             con.Close();
             return Allpurchaseevents;
@@ -34,12 +34,13 @@ namespace api.Utilities
             con.Open();
             Console.WriteLine("New Purchase Event");
 
-            string stm = @"INSERT INTO Purchase Events (Date, Time) VALUES(@Date, @Time)";
+            string stm = @"INSERT INTO PurchaseEvents (Date, Time, ProductID) VALUES(@Date, @Time, @ProductID)";
 
             using var cmd = new MySqlCommand(stm, con);
 
             cmd.Parameters.AddWithValue("@Date", myPurchaseEvent.Date);
             cmd.Parameters.AddWithValue("@Time", myPurchaseEvent.Time);
+            cmd.Parameters.AddWithValue("@ProductID", myPurchaseEvent.ProductID);
 
             cmd.Prepare();
 
@@ -52,7 +53,7 @@ namespace api.Utilities
             string cs  = myConnection.cs;
             using var con = new MySqlConnection(cs);
             con.Open();
-            string stm = @"UPDATE Purchase Events SET Date = @Date, Time = @Time, ProductID = @ProductID WHERE PurchaseID = @ID";
+            string stm = @"UPDATE PurchaseEvents SET Date = @Date, Time = @Time, ProductID = @ProductID WHERE PurchaseID = @ID";
             MySqlCommand cmd = new MySqlCommand(stm, con);
             
             cmd.Parameters.AddWithValue("@Date", value.Date);
@@ -72,7 +73,7 @@ namespace api.Utilities
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"UPDATE Purchase Events SET Deleted = 1 WHERE PurchaseID = @id";
+            string stm = @"UPDATE PurchaseEvents SET Deleted = 1 WHERE PurchaseID = @id";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id", value.PurchaseID);

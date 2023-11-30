@@ -21,7 +21,7 @@ namespace api.Utilities
             List<Admin> Alladmins = new List<Admin>();
             while(rdr.Read())
             {
-                Alladmins.Add(new Admin(){AdminID = rdr.GetInt32(0), Email = rdr.GetString(1), Password = rdr.GetString(2)});
+                Alladmins.Add(new Admin(){AdminID = rdr.GetInt32(0), Email = rdr.GetString(1), Password = rdr.GetString(2), Deleted = rdr.GetBoolean(3)});
             }
             con.Close();
             return Alladmins;
@@ -77,7 +77,7 @@ namespace api.Utilities
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"UPDATE Admins SET Deleted = 1 WHERE Admins = @id";
+            string stm = @"UPDATE Admins SET Deleted = 1 WHERE AdminID = @id";
 
             using var cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@id", value.AdminID);

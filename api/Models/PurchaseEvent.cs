@@ -6,6 +6,7 @@ namespace api.Models
         public string Date {get; set;}
         public string Time {get; set;}
         public int ProductID {get; set;}
+        public bool Deleted {get; set;}
      
     }
 }

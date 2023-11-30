@@ -10,5 +10,10 @@ namespace api.Models
         public bool Deleted {get; set;}
         public int VendID {get; set;}
 
+        public Product(){
+            Sold = false;
+            Deleted = false;
+        }
+
     }
 }

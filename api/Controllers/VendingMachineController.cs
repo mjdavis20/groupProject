@@ -17,7 +17,6 @@ namespace api.Controllers
 
         // GET: api/TTVM
         [HttpGet]
-
         public List<VendingMachine> Get()
         {
             VendingMachineUtilities utility = new VendingMachineUtilities();
@@ -26,10 +25,10 @@ namespace api.Controllers
 
         // GET: api/TTVM/5
         [HttpGet("{id}", Name = "GetVendingMachine")]
-        public VendingMachine Get(int id,[FromBody] VendingMachine value)
+        public VendingMachine Get(int id)
         {
             VendingMachineUtilities utility = new VendingMachineUtilities();
-            List<VendingMachine> myVendingMachines = utility.GetAllVendingMachines(value);
+            List<VendingMachine> myVendingMachines = utility.GetAllVendingMachines();
 
             foreach(VendingMachine vendingMachine in myVendingMachines)
             {
@@ -40,6 +39,7 @@ namespace api.Controllers
             }
             return new VendingMachine();
         }
+
 
         // POST: api/TTVM
         [HttpPost]

@@ -14,9 +14,9 @@ namespace api.Utilities
             string cs  = myConnection.cs;
             using var con = new MySqlConnection(cs);
             con.Open();
-            string stm = "SELECT * FROM VendingMachines WHERE Deleted = 0 ORDER BY VendID ASC";
+            string stm = "SELECT * FROM VendingMachines ORDER BY VendID ASC";
             using var cmd = new MySqlCommand(stm, con);
-            cmd.Prepare();
+            // cmd.Prepare();
             using MySqlDataReader rdr = cmd.ExecuteReader();
             List<VendingMachine> AllVendingMachines = new List<VendingMachine>();
             while(rdr.Read())
@@ -25,26 +25,6 @@ namespace api.Utilities
             }
             con.Close();
             return AllVendingMachines;
-        }
-
-        public List<VendingMachine> GetAllVendingMachines(VendingMachine value)
-        {
-            ConnectionString myConnection = new ConnectionString();
-            string cs  = myConnection.cs;
-            using var con = new MySqlConnection(cs);
-            con.Open();
-            string stm = "SELECT * FROM VendingMachines WHERE VendID = @VendID";
-            using var cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@VendID", value);
-            cmd.Prepare();
-            using MySqlDataReader rdr = cmd.ExecuteReader();
-            List<VendingMachine> Allvending = new List<VendingMachine>();
-            while(rdr.Read())
-            {
-                Allvending.Add(new VendingMachine(){VendID = rdr.GetInt32(0), Address = rdr.GetString(1), ZipCode = rdr.GetInt32(2), Deleted = rdr.GetBoolean(3)});
-            }
-            con.Close();
-            return Allvending;
         }
 
         public void NewVendingMachine(VendingMachine myVendingMachine)
@@ -73,11 +53,12 @@ namespace api.Utilities
             string cs  = myConnection.cs;
             using var con = new MySqlConnection(cs);
             con.Open();
-            string stm = @"UPDATE VendingMachines SET Address = @Address, ZipCode = @ZipCode WHERE VendID = @ID";
+            string stm = @"UPDATE VendingMachines SET Address = @Address, ZipCode = @ZipCode, Deleted = @Deleted WHERE VendID = @ID";
             MySqlCommand cmd = new MySqlCommand(stm, con);
             
             cmd.Parameters.AddWithValue("@Address", value.Address);
             cmd.Parameters.AddWithValue("@ZipCode", value.ZipCode);
+            cmd.Parameters.AddWithValue("@Deleted", value.Deleted);
             cmd.Parameters.AddWithValue("@ID", value.VendID);
             
             cmd.Prepare();
