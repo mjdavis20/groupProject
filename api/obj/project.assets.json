@@ -9714,11 +9714,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\lidav\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\MainUser\\.nuget\\packages\\": {}
+>>>>>>> ac046796e46cadb9c46dbf84b54eb78aa0c00044
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\lidav\\repos\\groupProject\\api\\api.csproj",
       "projectName": "api",
       "projectPath": "C:\\Users\\lidav\\repos\\groupProject\\api\\api.csproj",
@@ -9727,6 +9732,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lidav\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\MainUser\\Code\\321\\Group Project\\groupProject\\api\\api.csproj",
+      "projectName": "api",
+      "projectPath": "C:\\Users\\MainUser\\Code\\321\\Group Project\\groupProject\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\MainUser\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MainUser\\Code\\321\\Group Project\\groupProject\\api\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\MainUser\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> ac046796e46cadb9c46dbf84b54eb78aa0c00044
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -9774,6 +9789,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+<<<<<<< HEAD
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
@@ -9792,6 +9808,8 @@
             "version": "[6.0.11, 6.0.11]"
           }
         ],
+=======
+>>>>>>> ac046796e46cadb9c46dbf84b54eb78aa0c00044
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9800,7 +9818,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+>>>>>>> ac046796e46cadb9c46dbf84b54eb78aa0c00044
       }
     }
   }
