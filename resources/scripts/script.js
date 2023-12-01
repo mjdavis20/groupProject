@@ -1,5 +1,7 @@
 let balance = 0.00;
 let isAdmin = false; 
+const productUrl = "https://localhost:7051/api/Product";
+const adminUrl = "https://localhost:7051/api/Admin";
 
 // hides the Admin link on startup so you cant click unless logged in
 document.addEventListener("DOMContentLoaded", function() {
@@ -7,32 +9,51 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // change so that it can use admin login from database
-function adminLogin() {
-    
-    const username = document.getElementById("adminUsername").value;
+async function adminLogin() {
+    const email = document.getElementById("adminUsername").value;
     const password = document.getElementById("adminPassword").value;
 
-    if (username === "admin" && password === "adminpassword") {
-        isAdmin = true;
-        localStorage.setItem("adminLoggedIn", "true");
-        alert("Admin login successful!");
+    const loginData = {
+        email: email,
+        password: password
+    };
 
-        // Close the modal and remove modal backdrop
-        const modal = document.getElementById("adminLoginModal");
-        modal.classList.remove("show");
-        modal.style.display = "none";
-        document.body.classList.remove("modal-open");
-        
-        // Remove the modal backdrop
-        const modalBackdrop = document.querySelector(".modal-backdrop");
-        if (modalBackdrop) {
-            modalBackdrop.parentElement.removeChild(modalBackdrop);
+    try {
+        const response = await fetch(adminUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loginData),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+
+            isAdmin = true;
+            localStorage.setItem("adminLoggedIn", "true");
+            alert("Admin login successful!");
+
+            // Close the modal and remove modal backdrop
+            const modal = document.getElementById("adminLoginModal");
+            modal.classList.remove("show");
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open");
+
+            // Remove the modal backdrop
+            const modalBackdrop = document.querySelector(".modal-backdrop");
+            if (modalBackdrop) {
+                modalBackdrop.parentElement.removeChild(modalBackdrop);
+            }
+
+            // Show the Admin link after a successful admin login
+            document.getElementById("admin-link").style.display = "block";
+        } else {
+            alert("Invalid credentials. Please try again.");
         }
-
-        // Show the Admin link after a successful admin login
-        document.getElementById("admin-link").style.display = "block";
-    } else {
-        alert("Invalid credentials. Please try again.");
+    } catch (error) {
+        console.error('Error during admin login:', error);
+        alert('An error occurred during admin login. Please try again later.');
     }
 }
 
@@ -40,11 +61,11 @@ function adminLogin() {
 // Function to fetch products from the API and dynamically generate HTML elements
 async function fetchProducts() {
     try {
-        const response = await fetch('/api/ProductRoute');
+        const response = await fetch(productUrl);
         const products = await response.json();
 
         // Reference the product container
-        const productContainer = document.getElementById("product-container");
+        const productContainer = document.getElementById("Product");
 
         // Loop through each product and create HTML elements
         products.forEach(product => {
@@ -73,7 +94,7 @@ async function fetchProducts() {
 // Function to fetch product details by ID from the API
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(`/api/ProductRoute/${productId}`);
+        const response = await fetch(productUrl + "${productId}");
         const product = await response.json();
         // Handle the product details, update the UI, etc.
         console.log('Product Details:', product);
@@ -95,12 +116,12 @@ function addMoney() {
 }
 
 // Function to purchase an item
-async function purchaseItem() {
+async function purchaseItem(productId, productCost) {
     const selectedItem = document.getElementById("item-select").value;
 
     try {
         // Fetch product details
-        const response = await fetch(`/api/ProductRoute/${selectedItem}`);
+        const response = await fetch(prodcutUrl + "/" + productId);
         const product = await response.json();
 
         if (balance >= product.Cost) {
@@ -129,7 +150,7 @@ async function purchaseItem() {
 // Function to mark a product as sold (need to implement this on the admin page)
 async function markProductAsSold(productId) {
     try {
-        const response = await fetch(`/api/ProductRoute/${productId}`, {
+        const response = await fetch(productUrl + productId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
