@@ -19,7 +19,7 @@ async function adminLogin() {
     };
 
     try {
-        const response = await fetch(apiUrl + 'Admin', {
+        const response = await fetch(adminUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ async function fetchProducts() {
 // Function to fetch product details by ID from the API
 async function fetchProductDetails(productId) {
     try {
-        const response = await fetch(apiUrl + "/Product/${productId}");
+        const response = await fetch(productUrl + "${productId}");
         const product = await response.json();
         // Handle the product details, update the UI, etc.
         console.log('Product Details:', product);
@@ -121,7 +121,7 @@ async function purchaseItem(productId, productCost) {
 
     try {
         // Fetch product details
-        const response = await fetch(apiUrl + "/Product/" + productId);
+        const response = await fetch(prodcutUrl + "/" + productId);
         const product = await response.json();
 
         if (balance >= product.Cost) {
@@ -150,7 +150,7 @@ async function purchaseItem(productId, productCost) {
 // Function to mark a product as sold (need to implement this on the admin page)
 async function markProductAsSold(productId) {
     try {
-        const response = await fetch(apiUrl + "/Product/${productId}", {
+        const response = await fetch(productUrl + productId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
