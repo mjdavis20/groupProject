@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rjica\\Downloads\\cmder\\MIS 321\\groupProject\\api\\api.csproj": {}
+    "C:\\Users\\lidav\\repos\\groupProject\\api\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rjica\\Downloads\\cmder\\MIS 321\\groupProject\\api\\api.csproj": {
+    "C:\\Users\\lidav\\repos\\groupProject\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rjica\\Downloads\\cmder\\MIS 321\\groupProject\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\lidav\\repos\\groupProject\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\rjica\\Downloads\\cmder\\MIS 321\\groupProject\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\rjica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rjica\\Downloads\\cmder\\MIS 321\\groupProject\\api\\obj\\",
+        "projectPath": "C:\\Users\\lidav\\repos\\groupProject\\api\\api.csproj",
+        "packagesPath": "C:\\Users\\lidav\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lidav\\repos\\groupProject\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rjica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\lidav\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -65,19 +65,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.22, 6.0.22]"
+              "version": "[6.0.11, 6.0.11]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.22, 6.0.22]"
+              "version": "[6.0.11, 6.0.11]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.22, 6.0.22]"
+              "version": "[6.0.11, 6.0.11]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.22, 6.0.22]"
+              "version": "[6.0.11, 6.0.11]"
             }
           ],
           "frameworkReferences": {
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
